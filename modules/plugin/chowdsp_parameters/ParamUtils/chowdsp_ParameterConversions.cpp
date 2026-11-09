@@ -22,7 +22,7 @@ float stringToFreqVal (const juce::String& s)
 
 juce::String percentValToString (float percentVal)
 {
-    auto percentStr = juce::String (int (percentVal * 100.0f));
+    auto percentStr = juce::String (juce::roundToInt (percentVal * 100.0f));
     return percentStr + "%";
 }
 

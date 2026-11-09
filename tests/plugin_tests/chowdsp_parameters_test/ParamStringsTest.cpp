@@ -16,6 +16,8 @@ TEST_CASE ("Param Strings Test", "[plugin][parameters]")
     SECTION ("Percent Param Test")
     {
         REQUIRE_MESSAGE (percentValToString (0.5f) == juce::String ("50%"), "Incorrect percent string!");
+        REQUIRE_MESSAGE (percentValToString (0.59f) == juce::String ("59%"), "Percent string must round, not truncate (0.59f * 100 is 58.99999)!");
+        REQUIRE_MESSAGE (percentValToString (stringToPercentVal (percentValToString (0.5925926f))) == juce::String ("59%"), "Percent string round-trip must be stable!");
         REQUIRE_MESSAGE (juce::approximatelyEqual (stringToPercentVal ("50%"), 0.5f), "Incorrect percent value!");
         REQUIRE_MESSAGE (juce::approximatelyEqual (stringToPercentVal ("50"), 0.5f), "Incorrect value!");
     }
